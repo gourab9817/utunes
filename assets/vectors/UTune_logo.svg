@@ -1,0 +1,41 @@
+<!-- u_tune_logo_centered.svg -->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="300"
+  height="300"
+  viewBox="0 0 300 300"
+>
+  <!-- "U" shape + orange box face (#FF7F3E) -->
+  <g fill="none" stroke="#FF7F3E" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+    <!-- The "U" -->
+    <path d="M80 60
+             V170
+             C80 210, 120 240, 150 240
+             H180
+             C210 240, 240 210, 240 170
+             V60" />
+    <!-- The square "face" -->
+    <rect x="220" y="40" width="35" height="35" fill="#FF7F3E" rx="3"/>
+    <!-- White face details -->
+    <g fill="none" stroke="#FFFFFF" stroke-width="2">
+      <!-- Left eye (circle) -->
+      <circle cx="233" cy="52" r="2.5"/>
+      <!-- Right eye (wink) -->
+      <path d="M240 52h4"/>
+      <!-- Smile (arc) -->
+      <path d="M230 58 Q237 66 244 58"/>
+    </g>
+  </g>
+
+  <!-- Centered text: U (#FF2929) + Tune (#FF7F3E) -->
+  <text
+    x="160"
+    y="290"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="40"
+  >
+    <tspan fill="#FF2929">U</tspan>
+    <tspan fill="#FF7F3E">Tune</tspan>
+  </text>
+</svg>
