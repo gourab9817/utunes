@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "603140255184",
+    "project_id": "utune-music",
+    "storage_bucket": "utune-music.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603140255184:android:134e0751adaef349f61dd5",
+        "android_client_info": {
+          "package_name": "com.example.utune"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFbT2e0E-6zuu6xHrjlOz58nMy8WdYTRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
