@@ -3,9 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:utune/common/widgets/appbar/app_bar.dart';
 import 'package:utune/common/widgets/button/basic_app_button.dart';
 import 'package:utune/core/configs/assets/app_vectors.dart';
+import 'package:utune/data/models/auth/signin_user_req.dart';
+import 'package:utune/domain/usecases/auth/signin.dart';
 import 'package:utune/presentation/auth/pages/signup.dart';
+import 'package:utune/presentation/root/pages/root.dart';
+import 'package:utune/service_locator.dart';
 class SigninPage extends StatelessWidget {
-  const SigninPage({super.key});
+   SigninPage({super.key});
+  final TextEditingController _email=TextEditingController();
+  final TextEditingController _password=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,24 +24,56 @@ class SigninPage extends StatelessWidget {
           width: 40,
         ),
       ),
-      body:Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 40,
-          horizontal: 40
-        ),
-        child: Column(
-          children: [
-            _registerText(),
-            const SizedBox(height: 50,),
+      body:SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 40,
+            horizontal: 40
+          ),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(
+            vertical: 40,
+            horizontal: 40
+          ),
+            child: Column(
+              children: [
+                _registerText(),
+                const SizedBox(height: 50,),
+                
+                _emailField(context),
+                const SizedBox(height: 20,),
+                _passswordField(context),
+                const SizedBox(height: 20,),
+                BasicAppButton(
+                  onPressed: () async{
             
-            _emailField(context),
-            const SizedBox(height: 20,),
-            _passswordField(context),
-            const SizedBox(height: 20,),
-            BasicAppButton(
-              onPressed: (){}, 
-              title: 'Sign In',)
-          ],
+                    var result=await sl<SigninUseCase>().call(
+                      params: SigninUserReq(
+                        email: _email.text.toString(),
+                        password: _password.text.toString(),
+                        
+                      )
+                    );
+                    result.fold(
+                      (l) {
+                        var snackbar=SnackBar(content: Text(l));
+                        ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                      }, 
+                      (r) {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (BuildContext context) => const RootPage()),
+                          (route)=> false,
+                        );
+                      }
+                    );
+            
+            
+                  }, 
+                  title: 'Sign In',)
+              ],
+            ),
+          ),
         ),
       )
     );
@@ -56,6 +94,7 @@ class SigninPage extends StatelessWidget {
 
   Widget _emailField(BuildContext context){
     return TextField(
+      controller: _email,
       decoration: InputDecoration(
         hintText:'Enter your username or email',
       ).applyDefaults(
@@ -68,6 +107,7 @@ class SigninPage extends StatelessWidget {
 
   Widget _passswordField(BuildContext context){
     return TextField(
+      controller: _password,
       decoration: InputDecoration(
         hintText:'Enter your Password',
       ).applyDefaults(
@@ -98,7 +138,7 @@ class SigninPage extends StatelessWidget {
             onPressed: (){
               // Navigate to the signup page
                               Navigator.pushReplacement(context, MaterialPageRoute(
-                                builder: (BuildContext context) => const SignupPage(),
+                                builder: (BuildContext context) =>  SignupPage(),
                               ));
             },
              child: Text(

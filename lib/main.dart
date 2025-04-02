@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:utune/core/configs/theme/app_theme.dart';
 import 'package:utune/presentation/splash/pages/splash.dart';
 import 'package:utune/presentation/choose_mode/bloc/theme_cubit.dart';
+import 'package:utune/service_locator.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -24,6 +25,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
+  await initializeDependencies(); // Initialize your dependencies
   runApp(const RootApp());
 }
 

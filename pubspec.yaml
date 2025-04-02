@@ -25,6 +25,7 @@ dependencies:
   dartz: any
   cloud_firestore: any
   just_audio: any
+  supabase_flutter: ^1.10.25
 
 dev_dependencies:
   flutter_test:
